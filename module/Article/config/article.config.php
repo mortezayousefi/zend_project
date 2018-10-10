@@ -7,6 +7,7 @@ return [
     'controllers' => [
         'factories' => [
             Controller\ArticleController::class => InvokableFactory::class,
+            Controller\CategoryController::class => InvokableFactory::class,
         ],
     ],
 
@@ -22,6 +23,20 @@ return [
                     ],
                     'defaults' => [
                         'controller' => Controller\ArticleController::class,
+                        'action'     => 'index',
+                    ],
+                ],
+            ],
+            'category' => [
+                'type'    => 'segment',
+                'options' => [
+                    'route' => '/category[/:action[/:id]]',
+                    'constraints' => [
+                        'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
+                        'id'     => '[0-9]+',
+                    ],
+                    'defaults' => [
+                        'controller' => Controller\CategoryController::class,
                         'action'     => 'index',
                     ],
                 ],
